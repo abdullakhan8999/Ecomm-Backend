@@ -23,7 +23,7 @@ const initAdmin = async () => {
       role: process.env.Role,
       password: process.env.AdminPassword,
       avatar: {
-        public_id: process.env.AvatarID,
+        Public_id: process.env.AvatarID,
         url: process.env.url,
       }
     });

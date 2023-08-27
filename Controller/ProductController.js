@@ -81,7 +81,7 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
   });
 });
 
-// Get get Featured Products
+// Get  Featured Products
 exports.getFeaturedProducts = catchAsyncError(async (req, res, next) => {
   try {
     // code for to get 6 products

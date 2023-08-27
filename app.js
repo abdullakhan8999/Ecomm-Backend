@@ -7,13 +7,7 @@ const cors = require('cors');
 //middleware
 app.use(express.json());
 app.use(cookiesParser());
-const corsOptions = {
-   origin: 'https://unrivaled-granita-450d81.netlify.app',
-   credentials: true,
-};
-
-app.use(cors(corsOptions));
-
+app.use(cors());
 
 // router import
 app.use("/api/v1", require("./Router/ProductRouter"));

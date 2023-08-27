@@ -83,16 +83,19 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
 
 // Get get Featured Products
 exports.getFeaturedProducts = catchAsyncError(async (req, res, next) => {
-  // code for to get 6 products
-  const limit = 6; // Number of products you want to retrieve
-  const featuredProducts = await Product.find().limit(limit);
-
-  // Send the featured products as the response
-  res.status(200).json({
-    status: "success",
-    productsCount: featuredProducts.length,
-    products: featuredProducts,
-  });
+  try {
+    // code for to get 6 products
+    const limit = 6; // Number of products you want to retrieve
+    const featuredProducts = await Product.find().limit(limit);
+    // Send the featured products as the response
+    res.status(200).json({
+      status: "success",
+      productsCount: featuredProducts.length,
+      products: featuredProducts,
+    });
+  } catch (error) {
+    console.log("Error in featured products:", error);
+  }
 });
 
 //Product review controllers

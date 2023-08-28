@@ -1,4 +1,5 @@
 const app = require("./app");
+const cloudinary = require("cloudinary");
 const dotenv = require("dotenv");
 const { connectDB } = require("./Config/ConfigDB");
 const UserModel = require("./Models/UserModel");
@@ -22,10 +23,6 @@ const initAdmin = async () => {
       email: process.env.AdminEmail,
       role: process.env.Role,
       password: process.env.AdminPassword,
-      avatar: {
-        Public_id: process.env.AvatarID,
-        url: process.env.url,
-      }
     });
 
     // send responds
@@ -50,6 +47,8 @@ process.on("uncaughtException", (err) => {
 
 //Db
 connectDB();
+
+
 
 //Server running
 const server = app.listen(process.env.PORT, async () => {

@@ -4,24 +4,29 @@ const ErrorHandler = require("../Utils/ErrorHandler");
 const sendToken = require("../Utils/jwtToken");
 const sendEmail = require("../Utils/sendEmail");
 const crypto = require("crypto");
+const cloudinary = require("cloudinary");
 
 //Register user
 exports.createUser = catchAsyncError(async (req, res, next) => {
-  const { name, email, password } = req.body;
+  try {
+    const { name, email, password } = req.body;
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-    avatar: {
-      Public_id: "sampleId",
-      url: "sampleUrl",
-    },
-  });
+    // Create a new user with the uploaded avatar data
+    const user = await User.create({
+      name,
+      email,
+      password
+    });
 
-  //send status and token
-  sendToken(user, 201, res);
+    // Send status, token, and user data in the response
+    sendToken(user, 201, res);
+  } catch (error) {
+    // Handle any errors that occur during the process
+    console.log(error);
+    return next(new ErrorHandler(error.message, 500));
+  }
 });
+
 
 //Login user
 exports.loginUser = catchAsyncError(async (req, res, next) => {

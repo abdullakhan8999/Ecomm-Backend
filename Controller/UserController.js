@@ -4,7 +4,6 @@ const ErrorHandler = require("../Utils/ErrorHandler");
 const sendToken = require("../Utils/jwtToken");
 const sendEmail = require("../Utils/sendEmail");
 const crypto = require("crypto");
-const cloudinary = require("cloudinary");
 
 //Register user
 exports.createUser = catchAsyncError(async (req, res, next) => {

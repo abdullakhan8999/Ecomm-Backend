@@ -41,14 +41,17 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-//JWT Token
-userSchema.methods.getJWTToken = function () {
+// get token method
+userSchema.methods.getJwtToken = function () {
   return jwt.sign(
-    { id: this._id },
+    {
+      id: this._id,
+    },
     process.env.JWT_SECRET,
-    { expiresIn: process.env.JWT_EXPIRE, }
+    { expiresIn: process.env.JWT_EXPIRES_IN }
   );
 };
+
 
 //Compare password
 userSchema.methods.matchPassword = async function (enteredPassword) {

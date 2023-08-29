@@ -86,7 +86,8 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
   )}/api/v1/password/reset/${resetToken}`;
 
   //Message to send user for reset password
-  const message = `<!DOCTYPE html>
+  const message = `
+  <!DOCTYPE html>
 <html>
 
 <head>
@@ -106,14 +107,16 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
          display: flex;
          align-items: center;
          justify-content: center;
+         height: 100vh;
       }
-
 
       .container {
          max-width: 100%;
-         margin: 51px auto;
+         margin: 0 auto;
          padding: 20px;
          border: 1px solid #ccc;
+         background-color: #f7f7f7;
+         border-radius: 4px;
       }
 
       h2 {
@@ -124,19 +127,6 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
 
       p {
          margin-bottom: 20px;
-      }
-
-      .btn {
-         display: inline-block;
-         padding: 10px 20px;
-         background-color: #007bff;
-         color: white;
-         text-decoration: none;
-         border-radius: 4px;
-      }
-       a {
-         text-decoration: none;
-         color: white;
       }
 
       .btn:hover {
@@ -170,8 +160,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
          To reset your password, click the button below:
       </p>
       <p>
-         <a href=${resetUrl}
-            class="btn">Reset Password</a>
+         <a href=${resetUrl} class="btn">Reset Password</a>
       </p>
       <p>
          This link is valid for the next 30 minutes. If you do not reset your
@@ -183,7 +172,9 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
    </div>
 </body>
 
-</html>`;
+</html>
+
+  `;
 
   try {
     await sendEmail({

@@ -129,10 +129,6 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
          margin-bottom: 20px;
       }
 
-      .btn:hover {
-         background-color: #0069d9;
-      }
-
       @media only screen and (max-width: 600px) {
          body {
             font-size: 14px;
@@ -157,9 +153,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
          account. If you did not make this request, please ignore this message.
       </p>
       <p>
-         To reset your password, click the button below:
-      </p>
-      <p>
+         To reset your password, click the Link: 
          <a href=${resetUrl} class="btn">Reset Password</a>
       </p>
       <p>

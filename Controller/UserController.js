@@ -276,16 +276,13 @@ exports.UpdateUserPassword = catchAsyncError(async (req, res, next) => {
   //check for new, old and confirm password
   if (
     !req.body.oldPassword ||
-    !req.body.newPassword ||
-    !req.body.confirmPassword
+    !req.body.newPassword
   ) {
     return next(
       new ErrorHandler(
         `Please enter ${!req.body.oldPassword
           ? "old"
-          : !req.body.newPassword
-            ? "new"
-            : "confirm"
+          : "new"
         } Password.`,
         400
       )
@@ -296,11 +293,6 @@ exports.UpdateUserPassword = catchAsyncError(async (req, res, next) => {
   const isPasswordMatch = await user.comparePassword(req.body.oldPassword);
   if (!isPasswordMatch) {
     return next(new ErrorHandler("Old password is incorrect.", 400));
-  }
-
-  //check new and confirm password are same or not
-  if (req.body.confirmPassword != req.body.newPassword) {
-    return next(new ErrorHandler("Passwords does not match.", 400));
   }
 
   //if yes reset password and save password to  user
@@ -331,7 +323,7 @@ exports.UpdateUserDetails = catchAsyncError(async (req, res, next) => {
   // update avatar by cloud later
 
   //Updating user details
-  await User.findByIdAndUpdate(req.user.id, updateDetails, {
+  const user = await User.findByIdAndUpdate(req.user.id, updateDetails, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
@@ -340,6 +332,7 @@ exports.UpdateUserDetails = catchAsyncError(async (req, res, next) => {
   //send res
   res.status(200).json({
     status: "success",
+    user
   });
 });
 

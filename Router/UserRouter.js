@@ -36,10 +36,10 @@ router.route("/password/forgot").post(forgotPassword);
 router.route("/password/reset/:token").put(resetPassword);
 
 //update user password
-router.route("/password/update").post(isAuthenticatedUser, UpdateUserPassword);
+router.route("/password/update").put(isAuthenticatedUser, UpdateUserPassword);
 
 //update user Details
-router.route("/me/update").post(isAuthenticatedUser, UpdateUserDetails);
+router.route("/me/update").put(isAuthenticatedUser, UpdateUserDetails);
 
 //admin get all users
 router

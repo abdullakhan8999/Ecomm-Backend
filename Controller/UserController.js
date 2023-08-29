@@ -182,7 +182,6 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
       subject: "MaNaEcommerce Password Recovery",
       message,
     });
-    console.log(resetUrl);
     res.status(200).json({
       status: "success",
       message: `Email sent successfully to: ${user.email}`,

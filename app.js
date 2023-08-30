@@ -17,7 +17,7 @@ app.use(fileUpload());
 
 app.use("*", cors({
    origin: true,
-   credentials: true
+   credentials: true,
 }))
 
 

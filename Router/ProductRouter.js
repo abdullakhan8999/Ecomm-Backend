@@ -1,4 +1,5 @@
 const express = require("express");
+const router = express.Router();
 const {
   getAllProducts,
   createProduct,
@@ -13,7 +14,6 @@ const {
 } = require("../Controller/ProductController");
 const { isAuthenticatedUser, authorizedRoles } = require("../Middleware/auth");
 
-const router = express.Router();
 
 //User and Admin routes
 //Products Details Routes

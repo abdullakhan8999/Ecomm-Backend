@@ -19,12 +19,12 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json());
 app.use(fileUpload());
 //local or dev
-app.use(cors());
+// app.use(cors());
 
-// app.use("*", cors({
-//    origin: true,
-//    credentials: true,
-// }))
+app.use("*", cors({
+   origin: true,
+   credentials: true,
+}))
 
 
 // router import

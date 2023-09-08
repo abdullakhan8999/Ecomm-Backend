@@ -33,9 +33,10 @@ const initAdmin = async () => {
   }
 };
 
-//config
-dotenv.config({ path: "Config/.env" });
-
+// Config
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({ path: "Config/.env" });
+}
 //uncaught Exception
 process.on("uncaughtException", (err) => {
   console.log(`Message: ${err.message}`);

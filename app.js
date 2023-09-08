@@ -5,11 +5,11 @@ const cors = require('cors');
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
-const dotenv = require("dotenv");
 
-//config
-dotenv.config({ path: "Config/.env" });
-
+// Config
+if (process.env.NODE_ENV !== "PRODUCTION") {
+   require("dotenv").config({ path: "Config/.env" });
+}
 
 //middleware
 app.use(cookieParser());

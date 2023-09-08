@@ -7,15 +7,16 @@ const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const dotenv = require("dotenv");
 
-
 //config
 dotenv.config({ path: "Config/.env" });
 
 
 //middleware
-app.use(express.json());
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json());
 app.use(fileUpload());
 //local or dev
 app.use(cors());
@@ -32,6 +33,7 @@ app.use("/api/v1", require("./Router/UserRouter"));
 app.use("/api/v1", require("./Router/OrderRouter"));
 app.use("/api/v1", require("./Router/UploadImagesRouter"));
 app.use("/api/v1", require("./Router/PaymentRouter"));
+app.use("/api/v1", require("./Router/contactsRouter"));
 
 //Middleware for error
 app.use(errorMiddleware);

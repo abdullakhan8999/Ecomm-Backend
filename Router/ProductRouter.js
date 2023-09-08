@@ -10,12 +10,15 @@ const {
   getAllReviewOfProduct,
   deleteReviewOfProduct,
   addCarouselItem,
-  getFeaturedProducts
+  getFeaturedProducts,
+  getAdminProducts
 } = require("../Controller/ProductController");
 const { isAuthenticatedUser, authorizedRoles } = require("../Middleware/auth");
 
 
 //User and Admin routes
+router.route("/admin/products").get(isAuthenticatedUser, authorizedRoles("admin"), getAdminProducts);
+
 //Products Details Routes
 router.route("/products").get(getAllProducts);
 router.route("/featured/products").get(getFeaturedProducts);

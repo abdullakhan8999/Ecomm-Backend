@@ -99,10 +99,11 @@ exports.UpdateOrder = catchAsyncError(async (req, res, next) => {
     );
 
   //update the stock and send res
-  order.orderItems.forEach(async (order) => {
-    await updateStock(order.product, order.quantity);
-  });
-
+  if (req.body.status === "Shipped") {
+    order.orderItems.forEach(async (order) => {
+      await updateStock(order.product, order.quantity);
+    });
+  }
   //changing order status
   order.orderStatus = req.body.status;
 
@@ -119,9 +120,18 @@ exports.UpdateOrder = catchAsyncError(async (req, res, next) => {
 
 //product stock updater
 async function updateStock(id, quantity) {
-  const product = await Product.findById(id);
-  product.stock -= quantity;
-  await product.save({ validateBeforeSave: false });
+  try {
+    const product = await Product.findById(id);
+
+    if (!product) {
+      return next(new ErrorHandler(`Product not found with ID: ${id}`, 404));
+    }
+
+    product.stock = product.stock - quantity;
+    await product.save({ validateBeforeSave: false });
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //Delete user orders - admin
@@ -133,7 +143,7 @@ exports.deleteOrder = catchAsyncError(async (req, res, next) => {
     return next(
       new ErrorHandler(`Order not found with this Id: ${req.params.id}`, 404)
     );
-    
+
   res.status(200).json({
     success: true,
     message: `Order deleted successfully.`,

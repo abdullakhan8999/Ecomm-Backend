@@ -1,7 +1,6 @@
 //Create a new token and save in cookie
 const sendToken = (user, statusCode, res) => {
   const token = user.getJwtToken();
-  // sameSite: 'none',
 
   // options for cookie
   const options = {
@@ -9,6 +8,7 @@ const sendToken = (user, statusCode, res) => {
       Date.now() + 5 * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
+    sameSite: 'none',
     secure: process.env.NODE_ENV === "production",
   };
   //response

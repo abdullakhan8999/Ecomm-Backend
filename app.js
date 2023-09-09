@@ -1,3 +1,4 @@
+/*
 const express = require("express");
 const app = express();
 const errorMiddleware = require("./Middleware/error");
@@ -39,3 +40,6 @@ app.use("/api/v1", require("./Router/contactsRouter"));
 app.use(errorMiddleware);
 
 module.exports = app;
+
+*/
+

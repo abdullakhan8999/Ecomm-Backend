@@ -11,21 +11,26 @@ if (process.env.NODE_ENV !== "production") {
    require("dotenv").config({ path: "Config/.env" });
 }
 
-// Middleware
-app.use(cors({ origin: true, credentials: true }));
+//middleware
+app.use(express.json());
 app.use(cookieParser());
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
+//local or dev
+// app.use(cors());
+
+app.use("*", cors({
+   origin: true,
+   credentials: true,
+}))
 
 
-
+// router import
 app.use("/api/v1", require("./Router/ProductRouter"));
-app.use("/api/v1", require("./Router/OrderRouter"));
-app.use("/api/v1", require("./Router/PaymentRouter"));
-app.use("/api/v1", require("./Router/UploadImagesRouter"));
 app.use("/api/v1", require("./Router/UserRouter"));
-app.use("/api/v1", require("./Router/contactsRouter"));
+app.use("/api/v1", require("./Router/OrderRouter"));
+app.use("/api/v1", require("./Router/UploadImagesRouter"));
+app.use("/api/v1", require("./Router/PaymentRouter"));
 
 // Error Middleware
 app.use(errorMiddleware);

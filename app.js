@@ -31,6 +31,7 @@ app.use("/api/v1", require("./Router/UserRouter"));
 app.use("/api/v1", require("./Router/OrderRouter"));
 app.use("/api/v1", require("./Router/UploadImagesRouter"));
 app.use("/api/v1", require("./Router/PaymentRouter"));
+app.use("/api/v1", require("./Router/contactsRouter"));
 
 // Error Middleware
 app.use(errorMiddleware);

@@ -7,11 +7,6 @@ exports.isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
   const { token } = req.cookies;
   console.log("check for token", token)
 
-  // get token from local storage
-  let Token = localStorage.getItem("token");
-  console.log("Token from local storage", Token);
-
-
   if (!token) {
     return next(new ErrorHandler("Please Login to access this resource", 401));
   }

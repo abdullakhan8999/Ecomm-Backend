@@ -3,10 +3,6 @@ const sendToken = (user, statusCode, res) => {
   const token = user.getJwtToken();
   console.log("get token", token);
 
-  // Save token in local storage for 24 hours
-  localStorage.setItem("token", token);
-
-
   // options for cookie
   const options = {
     expires: new Date(

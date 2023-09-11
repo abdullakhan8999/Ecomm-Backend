@@ -1,7 +1,7 @@
 //Create a new token and save in cookie
 const sendToken = (user, statusCode, res) => {
   const token = user.getJwtToken();
-
+  window.localStorage.setItem("token", token);
   console.log("Get token from user", token)
 
   // options for cookie

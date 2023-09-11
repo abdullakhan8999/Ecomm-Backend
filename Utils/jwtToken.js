@@ -1,8 +1,7 @@
 //Create a new token and save in cookie
-const sendToken = (user, statusCode, res, from) => {
+const sendToken = (user, statusCode, res) => {
   const token = user.getJwtToken();
   console.log("get token", token);
-  console.log("get token from", from);
 
   // options for cookie
   const options = {
@@ -13,6 +12,10 @@ const sendToken = (user, statusCode, res, from) => {
     secure: process.env.NODE_ENV === "production",
     sameSite: 'none',
   };
+
+  // Save token in local storage for 24 hours
+  localStorage.setItem("token", token);
+
   //response
   res.status(statusCode).cookie("token", token, options).json({
     status: "success",

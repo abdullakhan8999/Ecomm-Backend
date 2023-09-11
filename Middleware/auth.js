@@ -7,7 +7,7 @@ exports.isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
 
   // get token from local storage
   let Token = localStorage.getItem("token");
-  console.log(Token);
+  console.log("Token from local storage", Token);
 
   const { token } = req.cookies;
 

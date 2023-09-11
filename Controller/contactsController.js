@@ -4,18 +4,15 @@ const catchAsyncError = require("../Middleware/catchAsyncError");
 // Create a new contact
 exports.createContact = catchAsyncError(async (req, res) => {
    try {
-      const { firstName, lastName, phone, email, address, message } = req.body;
+      const { name, email, message } = req.body;
 
-      if (!firstName, !lastName, !phone, !email, !address, !message) {
+      if (!name, !email, !message) {
          return next(new ErrorHandler("Please fill all the fields", 404));
       };
 
       const newContact = new ContactModel({
-         firstName,
-         lastName,
-         phone,
+         name,
          email,
-         address,
          message,
       });
       const savedContact = await newContact.save();

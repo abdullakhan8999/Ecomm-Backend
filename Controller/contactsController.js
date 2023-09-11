@@ -11,6 +11,7 @@ exports.createContact = catchAsyncError(async (req, res) => {
       };
 
       const newContact = new ContactModel({
+         userId: req.user._id,
          name,
          email,
          message,

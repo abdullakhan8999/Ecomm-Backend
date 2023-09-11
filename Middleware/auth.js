@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 const User = require("../Models/UserModel");
 
 exports.isAuthenticatedUser = catchAsyncError(async (req, res, next) => {
+  const { token } = req.cookies;
+  console.log("check for token", token)
 
   // get token from local storage
   let Token = localStorage.getItem("token");
   console.log("Token from local storage", Token);
-
-  const { token } = req.cookies;
 
 
   if (!token) {

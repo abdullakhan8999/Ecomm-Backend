@@ -2,7 +2,6 @@ const express = require("express");
 const {
   createUser,
   loginUser,
-  logoutUser,
   forgotPassword,
   resetPassword,
   getUserDetails,
@@ -22,9 +21,6 @@ router.route("/register").post(createUser);
 
 //Login User Router
 router.route("/login").post(loginUser);
-
-//Logout User Router
-router.route("/logout").get(logoutUser);
 
 //Get User details Router
 router.route("/me").get(isAuthenticatedUser, getUserDetails);

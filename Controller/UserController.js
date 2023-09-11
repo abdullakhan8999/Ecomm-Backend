@@ -18,14 +18,13 @@ exports.createUser = catchAsyncError(async (req, res, next) => {
     });
 
     // Send status, token, and user data in the response
-    sendToken(user, 201, res);
+    sendToken(user, 201, res, "register");
   } catch (error) {
     // Handle any errors that occur during the process
     console.log(error);
     return next(new ErrorHandler(error.message, 500));
   }
 });
-
 
 //Login user
 exports.loginUser = catchAsyncError(async (req, res, next) => {
@@ -49,7 +48,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
   }
 
   //If User there then send status and token
-  sendToken(user, 200, res);
+  sendToken(user, 200, res, "login");
 });
 
 //Logout User

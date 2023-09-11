@@ -18,19 +18,14 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(fileUpload());
 
-// Routers
-const routers = [
-   "ProductRouter",
-   "UserRouter",
-   "OrderRouter",
-   "UploadImagesRouter",
-   "PaymentRouter",
-   "contactsRouter",
-];
 
-routers.forEach((routerName) => {
-   app.use("/api/v1", require(`./Router/${routerName}`));
-});
+
+app.use("/api/v1", require("./Router/ProductRouter"));
+app.use("/api/v1", require("./Router/OrderRouter"));
+app.use("/api/v1", require("./Router/PaymentRouter"));
+app.use("/api/v1", require("./Router/UploadImagesRouter"));
+app.use("/api/v1", require("./Router/UserRouter"));
+app.use("/api/v1", require("./Router/contactsRouter"));
 
 // Error Middleware
 app.use(errorMiddleware);

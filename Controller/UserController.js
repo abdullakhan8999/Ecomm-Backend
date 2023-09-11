@@ -51,17 +51,7 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
   sendToken(user, 200, res);
 });
 
-//Logout User
-exports.logoutUser = catchAsyncError(async (req, res, next) => {
-  res.cookie("token", "", {
-    expires: new Date(0),
-    httpOnly: true,
-  });
-  res.status(200).json({
-    status: "success",
-    data: {},
-  });
-});
+// logout handle in frontend
 
 //forgot Password
 exports.forgotPassword = catchAsyncError(async (req, res, next) => {

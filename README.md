@@ -37,7 +37,7 @@ To set up and run the backend locally, follow these steps:
 
 ## Deployment
 
-Our backend is deployed on [Render](https://dashboard.render.com/) (or your chosen hosting platform). The production version can be accessed at [https://your-backend-url.com](https://ecomm-backend-5fix.onrender.com).
+Our backend is deployed on [Render](https://dashboard.render.com/) The production version can be accessed at [https://your-backend-url.com](https://ecomm-backend-5fix.onrender.com).
 
 ## Testing
 
